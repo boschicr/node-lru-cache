@@ -41,7 +41,9 @@ away.
 * `dispose` Function that is called on items when they are dropped
   from the cache.  This can be handy if you want to close file
   descriptors or do other cleanup tasks when items are no longer
-  accessible.  Called with `key, value`.  It's called *before*
+  accessible.  Called with `key, value, reason`.  Reason contains the 
+  eviction reason, and shall be set to one of the following values: 
+  ['expiration', 'update', 'overflow', 'removal', 'reset'].  It's called *before*
   actually removing the item from the internal cache, so if you want
   to immediately put it back in, you'll have to do that in a
   `nextTick` or `setTimeout` callback or it won't do anything.
